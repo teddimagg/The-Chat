@@ -3,20 +3,29 @@ const auth = firebase.auth();
 //Event listener on authentixation state changing (logging in/out)
 firebase.auth().onAuthStateChanged(user => {
     const userzone = document.querySelector('.useremail');
-    const unauth = document.querySelector('.unauth');
+    const unauth = document.querySelectorAll('.unauth');
 
     if(user){
         //inject user info to header
         userzone.innerText = user.email;
         userzone.parentElement.style.display = 'block';
-        unauth.style.display = 'none';
+        if(unauth){
+            console.log(unauth);
+            unauth.forEach(elem => {
+                elem.style.display = 'none'
+            });
+        }
     } else {
         //remove login info from navbar and auth view
         if(userzone){
             userzone.innerText = "";
             userzone.parentElement.style.display = 'none';
         }
-        unauth && (unauth.style.display = 'block');
+        if(unauth){
+            unauth.forEach(elem => {
+                elem.style.display = 'block'
+            });
+        }
     }
 });
 
