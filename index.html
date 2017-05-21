@@ -1,0 +1,167 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="robots" content="index, follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>The Chat</title>
+
+  <!-- Spectre styling -->
+  <link rel="stylesheet" href="style/spectre.min.css" />
+  <link rel="stylesheet" href="style/spectre-exp.min.css" />
+  <link rel="stylesheet" href="style/spectre-icons.min.css" />
+  <link rel="stylesheet" href="style/custom.css" />
+
+  <!-- Firebase Initialization -->
+  <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+  <script>
+    var config = {
+      apiKey: "AIzaSyDIV9D9XsXWiUhsEKm1-6kzYuHBo0KYKas",
+      authDomain: "transleetor.firebaseapp.com",
+      databaseURL: "https://transleetor.firebaseio.com",
+      projectId: "transleetor",
+      storageBucket: "transleetor.appspot.com",
+      messagingSenderId: "966726431659"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <!-- Application -->
+  <script src="script/routes.js"></script>
+  <script src="script/auth.js"></script>
+  <script src="script/chat.js"></script>
+</head>
+<body>
+  <section class="section section-header bg-gray">
+    <section class="grid-header container grid-960">
+      <div class="columns">
+        <div class="column col-sm-6">
+          <h3>The Chat</h3>
+        </div>
+        <div class="column col-sm-6" style="display: none;">
+          <button onclick="logout(event);" class="btn square float-right"><i class="icon icon-shutdown"></i></button>
+          <p class="float-right useremail"></p>
+        </div>
+      </div>
+    </section>
+  </section>
+  <div class="container grid-960">
+    <section class="columns">
+      <div class="docs-sidebar column col-3 col-sm-12">
+        <ul class="docs-nav nav">
+            <li id="chat-btn" class="nav-item active">
+              <a>Chat</a>
+            </li>
+            <li class="nav-item unauth">
+              <a>Account</a>
+              <ul class="nav">
+                <li id="login-btn" class="nav-item">
+                  <a>Login</a>
+                </li>
+                <li id="register-btn" class="nav-item">
+                  <a>Register</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/teddimagg/Transleetor">Github</a>
+            </li>
+          </ul>
+      </div>
+      <!-- chat page -->
+      <div id="chat" class="docs-content column col-9 col-sm-12 route">
+        <div class="empty">
+          <div class="empty-icon">
+            <i class="icon icon-mail"></i>
+          </div>
+          <h4 class="empty-title">Want to participate?</h4>
+          <p class="empty-subtitle">Only registered members can.</p>
+          <div class="empty-action">
+            <button onclick="displayRegister();" class="btn btn-primary">Register Here</button>
+          </div>
+        </div>
+        <div class="columns messageboard">
+        </div>
+      </div>
+      <!-- Login page -->
+      <div id="login" class="docs-content column col-9 col-sm-12 route">
+        <form onSubmit="login(event);">
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" placeholder="l33tH4x0r@swagmail.com" />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" placeholder="**********" />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <button id="submitbutton" class="btn float-right">Login</button>
+        </form>
+      </div>
+      <!-- Register page -->
+      <div id="register" class="docs-content column col-9 col-sm-12 route">
+        <form>
+          <div class="form-group">
+            <label class="form-label" for="email">Name</label>
+            <input class="form-input" type="text" id="name" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-example-1">Password Again</label>
+            <input class="form-input" type="password" id="input-example-1" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <button class="btn float-right">Register</button>
+        </form>
+      </div>
+      <!-- Contribute -->
+      <div id="register" class="docs-content column col-9 col-sm-12 route">
+        <form>
+          <div class="form-group">
+            <label class="form-label" for="email">Name</label>
+            <input class="form-input" type="text" id="name" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input class="form-input" type="email" id="email" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="password">Password</label>
+            <input class="form-input" type="password" id="password" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-example-1">Password Again</label>
+            <input class="form-input" type="password" id="input-example-1" placeholder="..." />
+            <p class="form-input-hint"></p>
+          </div>
+
+          <button class="btn float-right">Register</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Spectre docs style */
+.bg-gray {
+  background: #f8f9fa;
+  color: #667189;
+  padding: 1rem;
+}
+.bg-dark {
+  background: #50596c;
+  color: #fff;
+  padding: 1rem;
+}
+.bg-primary {
+  background: #5764c6;
+  color: #fff;
+  padding: 1rem;
+}
+
+/* CUSTOM */
+.section-header {
+  padding-top: 30px;
+}
+
+textarea {
+  resize: none;
+}
+
+#login, #register {
+  display: none;
+}
+
+.useremail {
+  padding: 3px 10px;
+}
+
+#chat-btn, #login-btn, #register-btn {
+  cursor: pointer;
+}
+
+.messageboard {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.message {
+  margin-bottom: 15px;
+}
