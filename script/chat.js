@@ -1,13 +1,13 @@
 let chatdata = [];
 
-const chat = firebase.database().ref().child('chat');
+let chat = firebase.database().ref().child('chat');
 chat.on('value', snap => {
+    console.log('updating chat');
     updateChat(snap.val());
 });
 
 function updateChat(snap){
-    if(chatdata.length < snap.length){
-        console.log('print');
+    if(chatdata){
         const messageboard = document.querySelector('.messageboard');
         for(i = chatdata.length; i < snap.length; i++){
             let message = document.createElement('ul');
@@ -32,4 +32,25 @@ function updateChat(snap){
         }
         chatdata = snap;
     }
+}
+
+function createMessage(event){
+    event.preventDefault();
+    //If connection has already been established
+    if(chat && event.target.message.value && firebase.auth().currentUser){
+        let newdata = [...chatdata, {
+            'author': firebase.auth().currentUser.displayName,
+            'date': new moment().format('DD.MM.YYYY'),
+            'time': new moment().format('HH:mm'),
+            'subject': event.target.message.value
+        }];
+        newdata = newdata.slice(newdata.length - 20, newdata.length);
+        chat.set(newdata);
+
+        event.target.message.classList.remove('is-error');
+        event.target.message.value = "";
+    } else {
+        event.target.message.classList.add('is-error');
+    }
+
 }

@@ -43,4 +43,9 @@ textarea {
 
 .message {
   margin-bottom: 15px;
+  width: 100%;
+}
+
+.auth {
+  display: none;
 }

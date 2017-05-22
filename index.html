@@ -30,6 +30,9 @@
   <script src="script/routes.js"></script>
   <script src="script/auth.js"></script>
   <script src="script/chat.js"></script>
+
+  <!-- Additions -->
+  <script src="script/moment.js"></script>
 </head>
 <body>
   <section class="section section-header bg-gray">
@@ -64,12 +67,22 @@
               </ul>
             </li>
             <li class="nav-item">
-              <a href="https://github.com/teddimagg/Transleetor">Github</a>
+              <a href="https://github.com/teddimagg/The-Chat">Github</a>
             </li>
           </ul>
       </div>
       <!-- chat page -->
       <div id="chat" class="docs-content column col-9 col-sm-12 route">
+        <form class="auth" onSubmit="createMessage(event);">
+          <div class="form-group">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-input" id="message" placeholder="Textarea" rows="3"></textarea>
+          </div>
+          <div class="empty-action">
+            <button id="submitbutton" class="btn btn-primary">SEND</button>
+          </div>
+        </form>
+
         <div class="empty unauth">
           <div class="empty-icon">
             <i class="icon icon-mail"></i>
@@ -80,6 +93,7 @@
             <button onclick="displayRegister();" class="btn btn-primary">Register Here</button>
           </div>
         </div>
+
         <div class="columns messageboard">
         </div>
       </div>
@@ -103,7 +117,7 @@
       </div>
       <!-- Register page -->
       <div id="register" class="docs-content column col-9 col-sm-12 route">
-        <form>
+        <form onSubmit="register(event);">
           <div class="form-group">
             <label class="form-label" for="email">Name</label>
             <input class="form-input" type="text" id="name" placeholder="..." />
@@ -124,11 +138,11 @@
 
           <div class="form-group">
             <label class="form-label" for="input-example-1">Password Again</label>
-            <input class="form-input" type="password" id="input-example-1" placeholder="..." />
+            <input class="form-input" type="password" id="passwordagain" placeholder="..." />
             <p class="form-input-hint"></p>
           </div>
 
-          <button class="btn float-right">Register</button>
+          <button id="submitbutton" class="btn float-right">Register</button>
         </form>
       </div>
       <!-- Contribute -->
